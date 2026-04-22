@@ -1,33 +1,55 @@
 # mcp-dnd5e
 
-MCP server for D&D 5th Edition spells, monsters, and classes via [dnd5eapi.co](https://www.dnd5eapi.co). No authentication required.
+D&D 5e MCP — wraps the D&D 5th Edition API (free, no auth)
+
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 250+ live data sources.
 
 ## Tools
 
 | Tool | Description |
 |------|-------------|
-| `get_spell` | Get full details for a D&D 5e spell by index name |
-| `get_monster` | Get full details for a D&D 5e monster by index name |
-| `get_class` | Get details for a D&D 5e character class by index name |
-| `list_spells` | List all available D&D 5e spells |
+| `list_spells` | Search D&D 5e spells by name or level. Returns spell indices, names, and levels for use with get_spell to fetch full details. |
 
-## Quickstart via Pipeworx Gateway
+## Quick Start
 
-Call any tool through the hosted gateway with zero setup:
+Add to your MCP client (Claude Desktop, Cursor, Windsurf, etc.):
 
-```bash
-curl -X POST https://gateway.pipeworx.io/mcp \
-  -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "tools/call",
-    "params": {
-      "name": "dnd5e_get_spell",
-      "arguments": { "index": "fireball" }
+```json
+{
+  "mcpServers": {
+    "dnd5e": {
+      "url": "https://gateway.pipeworx.io/dnd5e/mcp"
     }
-  }'
+  }
+}
 ```
+
+Or connect to the full Pipeworx gateway for access to all 250+ data sources:
+
+```json
+{
+  "mcpServers": {
+    "pipeworx": {
+      "url": "https://gateway.pipeworx.io/mcp"
+    }
+  }
+}
+```
+
+## Using with ask_pipeworx
+
+Instead of calling tools directly, you can ask questions in plain English:
+
+```
+ask_pipeworx({ question: "your question about Dnd5e data" })
+```
+
+The gateway picks the right tool and fills the arguments automatically.
+
+## More
+
+- [All tools and guides](https://github.com/pipeworx-io/examples)
+- [pipeworx.io](https://pipeworx.io)
 
 ## License
 
