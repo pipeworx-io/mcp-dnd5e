@@ -1,0 +1,58 @@
+[
+  {
+    "name": "get_spell",
+    "description": "Get spell details including damage, range, duration, components, and effects. Provide spell index (e.g., \"fireball\", \"magic-missile\", \"cure-wounds\"). Returns damage dice, range, casting time, and effect descriptions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Spell index name in kebab-case (e.g. \"fireball\", \"magic-missile\")."
+        }
+      },
+      "required": [
+        "index"
+      ]
+    }
+  },
+  {
+    "name": "get_monster",
+    "description": "Get monster stats including AC, HP, abilities, skills, senses, and actions. Provide monster index (e.g., \"aboleth\", \"dragon-red-adult\", \"goblin\"). Returns ability scores, skill bonuses, and attack/action details.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Monster index name in kebab-case (e.g. \"goblin\", \"dragon-red-adult\")."
+        }
+      },
+      "required": [
+        "index"
+      ]
+    }
+  },
+  {
+    "name": "get_class",
+    "description": "Get class features, hit dice, proficiencies, and advancement tables. Provide class index (e.g., \"barbarian\", \"wizard\", \"rogue\"). Returns feature progression, proficiency gains, and subclass options.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Class index name in lowercase (e.g. \"wizard\", \"fighter\", \"cleric\")."
+        }
+      },
+      "required": [
+        "index"
+      ]
+    }
+  },
+  {
+    "name": "list_spells",
+    "description": "Search D&D 5e spells by name or level. Returns spell indices, names, and levels for use with get_spell to fetch full details.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]
